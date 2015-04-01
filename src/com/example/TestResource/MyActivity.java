@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyActivity extends Activity implements View.OnClickListener {
-    private static final String LOG_TAG = "myLogs";
     private Spinner spinnerResult;
     private Button btnDbIn, btnDbOut;
     private final List<SpinnerElement> spinnerList = new ArrayList<SpinnerElement>();
@@ -63,7 +62,16 @@ public class MyActivity extends Activity implements View.OnClickListener {
     }
 
     private void readSource(){
+        //This abstract class is the superclass of all classes representing an input stream of bytes.
+        //Applications that need to define a subclass of InputStream must always provide a method that returns the next byte of input.
         InputStream sourceStream = getResources().openRawResource(R.raw.source_element);
+        //An InputStreamReader is a bridge from byte streams to character streams: It reads bytes and decodes them into characters using a specified charset. The charset that it uses may be specified by name or may be given explicitly, or the platform's default charset may be accepted.
+        //Each invocation of one of an InputStreamReader's read() methods may cause one or more bytes to be read from the underlying byte-input stream. To enable the efficient conversion of bytes to characters, more bytes may be read ahead from the underlying stream than are necessary to satisfy the current read operation.
+        //For top efficiency, consider wrapping an InputStreamReader within a BufferedReader.
+
+        //Reads text from a character-input stream, buffering characters so as to provide for the efficient reading of characters, arrays, and lines.
+        //The buffer size may be specified, or the default size may be used. The default is large enough for most purposes.
+        //In general, each read request made of a Reader causes a corresponding read request to be made of the underlying character or byte stream. It is therefore advisable to wrap a BufferedReader around any Reader whose read() operations may be costly, such as FileReaders and InputStreamReaders.
         BufferedReader r = new BufferedReader(new InputStreamReader(sourceStream));
         String line;
         try {
